@@ -69,7 +69,7 @@ function iniciarTurno (e) {
             instrucciones.innerText = "😭 ¡La computadora ganó el juego! 😭"
         }
 
-        eli.classList.add("disabled");
+        eligeTuArma.classList.add("disabled");
         reiniciar.classList.remove("disabled");
         reiniciar.addEventListener("click", reiniciarJuego);
     }
