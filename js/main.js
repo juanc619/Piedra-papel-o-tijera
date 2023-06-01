@@ -17,6 +17,7 @@ botonesArmas.forEach(boton => {
 });
 
 function iniciarTurno (e) {
+
     let eleccionPC = Math.floor(Math.random() * 3);
     let eleccionUsuario = e.currentTarget.id;
     
@@ -54,7 +55,29 @@ function iniciarTurno (e) {
         empate();
     }
 
+    mensaje.classList.remove("disabled");
+    contenedorEleccionUsuario.innerText = eleccionUsuario;
+    contenedorEleccionPC.innerText = eleccionPC;
+
+    if (puntosUsuario === 5 || puntosPC === 5) {
+
+        if (puntosUsuario === 5) {
+            instrucciones.innerText = "🔥 ¡Ganaste el juego! 🔥"
+        }
+
+        if (puntosPC === 5) {
+            instrucciones.innerText = "😭 ¡La computadora ganó el juego! 😭"
+        }
+
+        eli.classList.add("disabled");
+        reiniciar.classList.remove("disabled");
+        reiniciar.addEventListener("click", reiniciarJuego);
+    }
+
+
 }
+
+    
 
 function ganaUsuario() {
     puntosUsuario++;
@@ -71,5 +94,20 @@ function ganaPc() {
 function empate() {
     contenedorGanaPunto.innerText = "¡Empate! 😱"
 }
+
+function reiniciarJuego() {
+    reiniciar.classList.add("disabled");
+    eligeTuArma.classList.remove("disabled");
+    mensaje.classList.add("disabled");
+
+    puntosUsuario = 0;
+    puntosPC = 0;
+
+    contenedorPuntosUsuario.innerText = puntosUsuario;
+    contenedorPuntosPC.innerText = puntosPC;
+
+    instrucciones.innerText = "El primero en llegar a 5 puntos gana"
+}
+
 
 
